@@ -11,9 +11,11 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            padding: 20px; /* Добавлен отступ */
             font-family: 'Arial', sans-serif;
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            box-sizing: border-box; /* Включает отступы и границы в ширину и высоту элементов */
         }
         .container {
             text-align: center;
@@ -21,14 +23,16 @@
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 800px; /* Ограничивает максимальную ширину контейнера */
+            width: 100%;
         }
         h1 {
-            font-size: 3em;
+            font-size: 2.5em;
             margin-bottom: 0.5em;
         }
         .countdown {
             font-size: 2em;
-            margin-bottom: 1em; /* Добавлен отступ */
+            margin-bottom: 1em;
         }
         #disqus_thread {
             background: rgba(255, 255, 255, 0.9);
@@ -47,7 +51,9 @@
             margin-bottom: 10px;
         }
         img {
-            margin-bottom: 1em; /* Добавлен отступ */
+            margin-bottom: 1em;
+            max-width: 100%; /* Ограничивает максимальную ширину изображения */
+            height: auto; /* Сохраняет соотношение сторон изображения */
         }
     </style>
 </head>
