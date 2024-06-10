@@ -29,66 +29,28 @@
         .countdown {
             font-size: 2em;
         }
-        .comments {
-            margin-top: 20px;
-            text-align: left;
-        }
-        .comment {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        .comment h4, .comment p {
-            margin: 0;
-        }
-        .comment h4 {
-            margin-bottom: 5px;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>До Дня Рождения Никиты осталось:</h1>
         <div id="countdown" class="countdown"></div>
-
-        <div class="comments">
-            <h2>Комментарии:</h2>
-            <?php
-            session_start();
-            if (!isset($_SESSION['comments'])) {
-                $_SESSION['comments'] = [];
-            }
-            if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['comment'])) {
-                $comment = [
-                    'name' => htmlspecialchars($_POST['name']),
-                    'text' => htmlspecialchars($_POST['comment']),
-                    'time' => date('Y-m-d H:i:s')
-                ];
-                $_SESSION['comments'][] = $comment;
-            }
-            ?>
-
-            <form method="POST">
-                <input type="text" name="name" placeholder="Ваше имя" required><br>
-                <textarea name="comment" placeholder="Ваш комментарий" required></textarea><br>
-                <button type="submit">Отправить</button>
-            </form>
-
-            <?php
-            if (!empty($_SESSION['comments'])) {
-                foreach ($_SESSION['comments'] as $comment) {
-                    echo "<div class='comment'><h4>{$comment['name']} ({$comment['time']})</h4><p>{$comment['text']}</p></div>";
-                }
-            }
-            ?>
-        </div>
+		
+		<div id="disqus_thread"></div>
+<script>
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-nikita-flexboys-ru.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
     </div>
     <script>
         function updateCountdown() {
             const now = new Date();
             let year = now.getFullYear();
-            const birthday = new Date(year, 5, 11);
+            const birthday = new Date(year, 5, 11); // 10 июня
             if (now > birthday) {
                 birthday.setFullYear(year + 1);
             }
@@ -106,5 +68,6 @@
 
         setInterval(updateCountdown, 1);
     </script>
+	<script id="dsq-count-scr" src="//https-nikita-flexboys-ru.disqus.com/count.js" async></script>
 </body>
 </html>
