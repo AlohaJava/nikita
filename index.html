@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Отсчет до Дня Рождения Никиты</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ffcc33, #ff66cc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+        .countdown {
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>До Дня Рождения Никиты осталось:</h1>
+        <div id="countdown" class="countdown"></div>
+    </div>
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            let year = now.getFullYear();
+            const birthday = new Date(year, 5, 11); // 10 июня
+            if (now > birthday) {
+                birthday.setFullYear(year + 1);
+            }
+            const diff = birthday - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            const milliseconds = Math.floor((diff % 1000) / 1);
+            
+            document.getElementById('countdown').innerHTML =
+                days + "д " + hours + "ч " + minutes + "м " + seconds + "с " + milliseconds + "мс";
+        }
+
+        setInterval(updateCountdown, 1);
+    </script>
+</body>
+</html>
